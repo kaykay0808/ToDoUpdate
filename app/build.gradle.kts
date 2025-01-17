@@ -67,6 +67,9 @@ dependencies {
     // Room
     implementation(libs.room)
 
+    // Datastore
+    implementation(libs.datastore)
+
     // Navigation
     // Room
     // Dagger - Hilt -> implementation/Ksp

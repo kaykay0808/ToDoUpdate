@@ -1,13 +1,13 @@
 [versions]
 agp = "8.8.0"
-kotlin = "2.0.0"
+kotlin = "2.0.20"
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.7"
-activityCompose = "1.9.3"
-composeBom = "2024.12.01"
+activityCompose = "1.10.0"
+composeBom = "2025.01.00"
 # Extended ##############
 # Dagger/Hilt
 kspVersion = "2.0.20-1.0.24"
@@ -15,6 +15,8 @@ hiltVersion = "2.50"
 hiltNavigationVersion = "1.2.0"
 # Room
 roomVersion = "2.6.1"
+# DataStore
+dataStoreVersion = "1.1.2"
 
 
 
@@ -38,9 +40,13 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hiltVersion" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hiltVersion" }
 hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationVersion" }
+# Room
 room = { module = "androidx.room:room-runtime", version.ref = "roomVersion" }
 room-annotation = { module = "androidx.room:room-compiler", version.ref = "roomVersion" }
 room-androidx = { module = "androidx.room:room-ktx", version.ref = "roomVersion" }
+# Datastore
+datastore = { module =  "androidx.datastore:datastore-preferences", version.ref = "dataStoreVersion"}
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
