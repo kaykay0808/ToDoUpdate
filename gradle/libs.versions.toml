@@ -17,6 +17,8 @@ hiltNavigationVersion = "1.2.0"
 roomVersion = "2.6.1"
 # DataStore
 dataStoreVersion = "1.1.2"
+# Navigation
+navigationVersion = "2.8.5"
 
 
 
@@ -45,7 +47,9 @@ room = { module = "androidx.room:room-runtime", version.ref = "roomVersion" }
 room-annotation = { module = "androidx.room:room-compiler", version.ref = "roomVersion" }
 room-androidx = { module = "androidx.room:room-ktx", version.ref = "roomVersion" }
 # Datastore
-datastore = { module =  "androidx.datastore:datastore-preferences", version.ref = "dataStoreVersion"}
+datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "dataStoreVersion" }
+# Navigation
+navigation = { module = "androidx.navigation:navigation-compose", version.ref = "navigationVersion" }
 
 
 [plugins]

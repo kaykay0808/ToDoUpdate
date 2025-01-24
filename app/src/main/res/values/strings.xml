@@ -1,3 +1,38 @@
 <resources>
-    <string name="app_name">ToDoUpdate</string>
+    <string name="app_name">ToDo</string>
+    <string name="add_button">Add Button</string>
+
+    <!-- Splash Screen -->
+    <string name="to_do_logo">To-Do Logo</string>
+
+    <!-- List Screen -->
+    <string name="empty_content">No Task Found</string>
+
+    <!-- Default App Bar -->
+    <string name="task">Task</string>
+    <string name="delete_all_action">Delete All</string>
+    <string name="search_action">Search Task</string>
+    <string name="sort_action">Sort Tasks</string>
+    <!-- Search App Bar -->
+    <string name="search_input_placeholder">Search</string>
+    <!-- Icon description -->
+    <string name="close_icon">Close Icon</string>
+    <string name="search_icon">Search Icon</string>
+    <string name="sad_face_icon">Sad Face Icon</string>
+    <string name="back_arrow">Back Arrow"</string>
+    <string name="drop_down_arrow">Drop-Down Arrow Icon</string>
+    <!-- Add Screen -->
+    <string name="add_task">Add Task</string>
+    <string name="delete_icon">Delete Icon</string>
+    <string name="add_icon">Add Icon</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+
+    <!-- Alert Dialog Box -->
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="delete_task">Remove \'%1$s\'?</string>
+    <string name="delete_task_confirmation">Are you duckings sure you want to remove \'%1$s\'?</string>
+    <string name="delete_all_task">Remove All Task?</string>
+    <string name="delete_all_task_confirmation">Are you sure you want to\nremove all task?\nThere is no way going back after this action.</string>
 </resources>

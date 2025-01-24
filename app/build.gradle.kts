@@ -35,6 +35,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = "11"
+        freeCompilerArgs += listOf("-Xcontext-receivers") // Applied some context receivers in gradle
     }
     buildFeatures {
         compose = true
@@ -66,11 +67,13 @@ dependencies {
 
     // Room
     implementation(libs.room)
+    implementation(libs.room.androidx)
+    ksp(libs.room.annotation)
 
     // Datastore
     implementation(libs.datastore)
 
     // Navigation
-    // Room
-    // Dagger - Hilt -> implementation/Ksp
+    implementation(libs.navigation)
+
 }
