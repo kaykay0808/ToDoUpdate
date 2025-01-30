@@ -19,8 +19,10 @@ import com.example.todoupdate.R
 import com.example.todoupdate.ui.screens.ViewEffects
 import com.example.todoupdate.ui.screens.list.listviewmodel.ListViewEffect
 import com.example.todoupdate.ui.screens.list.listviewmodel.ListViewModel
+import com.example.todoupdate.ui.screens.list.maintopbar.ListTopBar
 import com.example.todoupdate.ui.theme.floatingActionButtonBackgroundColor
 import com.example.todoupdate.util.states.Action
+import com.example.todoupdate.util.states.SearchAppBarState
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -51,7 +53,35 @@ fun ListScreen(
 
     Scaffold(
         snackbarHost = { SnackbarHost(hostState = scaffoldState) },
-        topBar = {},
+        topBar = {
+            ListTopBar(
+                viewState = viewState,
+                onSearchIconClicked = {
+                    listViewModel.listAppBarState(
+                        newState = SearchAppBarState.OPENED
+                    )
+                },
+                onSortIconClicked = {},
+                onDeleteAllConfirmed = {},
+                textSearchInput = viewState.searchTextInputState,
+                onCloseIconClicked = {
+                    if (viewState.searchTextInputState.isNotEmpty()) {
+                        listViewModel.defaultTextInputState()
+                    } else {
+                        listViewModel.listAppBarState(
+                            newState = SearchAppBarState.CLOSED
+                        )
+                    }
+                },
+                onSearchImeClicked = { searchQuery ->
+                    listViewModel.searchDatabase(searchQuery = searchQuery)
+                },
+                onSearchTextChange = { onNewTextEdit ->
+                    listViewModel.newInputTextChange(onNewTextEdit)
+                },
+                isIconEnabled = viewState.iconEnableState // todo: may fix this
+            )
+        },
         content = {},
         floatingActionButton = {
             ListFloatingActionButton(onFloatingActionButtonClicked = navigateToTaskScreen)
@@ -62,7 +92,9 @@ fun ListScreen(
 @Composable
 fun ListFloatingActionButton(onFloatingActionButtonClicked: (taskId: Int) -> Unit) {
     FloatingActionButton(
-        onClick = {},
+        onClick = {
+            onFloatingActionButtonClicked(-1)
+        },
         containerColor = MaterialTheme.colorScheme.floatingActionButtonBackgroundColor
 
     ) {

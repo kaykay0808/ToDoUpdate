@@ -96,6 +96,8 @@ fun SearchAppBar(
             ),
             colors = TextFieldDefaults.colors(
                 cursorColor = MaterialTheme.colorScheme.topAppBarContentColor,
+                unfocusedContainerColor = Color.Transparent,
+                disabledContainerColor = Color.Transparent,
                 focusedContainerColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
                 disabledIndicatorColor = Color.Transparent,
@@ -104,6 +106,9 @@ fun SearchAppBar(
         )
     }
 }
+
+// unfocusedContainerColor = Color.Transparent, // ADD THIS
+// disabledContainerColor = Color.Transparent,  // ADD THIS
 
 @Preview
 @Composable

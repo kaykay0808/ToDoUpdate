@@ -11,6 +11,7 @@ data class ListViewState(
     val searchAppBarState: SearchAppBarState = SearchAppBarState.CLOSED,
     val searchTextInputState: String = "",
     val closeIconState: CloseIconState = CloseIconState.READY_TO_EMPTY_FIELD,
+    val iconEnableState: Boolean = false,
     // Room
     val allTask: RequestState<List<TaskData>> = RequestState.Idle, // List<TaskData> = emptyList()
     val actionForSnackBar: Action = Action.NO_ACTION,

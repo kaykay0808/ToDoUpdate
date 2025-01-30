@@ -40,6 +40,7 @@ class ListViewModel @Inject constructor(
     private var searchAppBarState = SearchAppBarState.CLOSED
     private var searchTextInputState = ""
     private var closeIconState = CloseIconState.READY_TO_EMPTY_FIELD
+    private var iconEnableState = false
     private var allTask: RequestState<List<TaskData>> = RequestState.Idle
     // private var searchTask: RequestState<List<TaskData>> = RequestState.Idle
     private var actionForSnackBar = Action.NO_ACTION
@@ -83,6 +84,7 @@ class ListViewModel @Inject constructor(
             searchAppBarState = searchAppBarState,
             searchTextInputState = searchTextInputState,
             closeIconState = closeIconState,
+            iconEnableState = iconEnableState,
             allTask = allTask,
             // searchTask = searchTask,
             actionForSnackBar = actionForSnackBar
@@ -141,10 +143,12 @@ class ListViewModel @Inject constructor(
         }
     }
 
+    // This function takes a searchQuery(a String) as input.
     fun searchDatabase(searchQuery: String) {
         allTask = RequestState.Loading
         render()
         try {
+            // Launching a coroutine for Database Search
             viewModelScope.launch {
                 repository.searchDatabase(searchQuery = "%$searchQuery%") // Need to pass pass the value between %% symbols
                     .collect { searchTaskTyped ->
