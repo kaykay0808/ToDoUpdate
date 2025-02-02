@@ -1,4 +1,4 @@
-package com.example.todoupdate.ui.screens.list.components
+package com.example.todoupdate.ui.screens.components
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Row

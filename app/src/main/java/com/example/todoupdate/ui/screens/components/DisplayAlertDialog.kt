@@ -1,4 +1,4 @@
-package com.example.todoupdate.ui.screens.list.components
+package com.example.todoupdate.ui.screens.components
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button

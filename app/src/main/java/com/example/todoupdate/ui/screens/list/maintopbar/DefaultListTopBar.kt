@@ -23,8 +23,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.todoupdate.R
 import com.example.todoupdate.data.models.Priority
-import com.example.todoupdate.ui.screens.list.components.DisplayAlertDialog
-import com.example.todoupdate.ui.screens.list.components.PriorityItem
+import com.example.todoupdate.ui.screens.components.DisplayAlertDialog
+import com.example.todoupdate.ui.screens.components.PriorityItem
 import com.example.todoupdate.ui.theme.LARGE_PADDING
 import com.example.todoupdate.ui.theme.topAppBarBackgroundColor
 import com.example.todoupdate.ui.theme.topAppBarContentColor
