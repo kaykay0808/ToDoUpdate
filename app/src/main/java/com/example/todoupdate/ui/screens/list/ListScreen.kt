@@ -1,16 +1,19 @@
 package com.example.todoupdate.ui.screens.list
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,14 +36,14 @@ fun ListScreen(
     val viewState = listViewModel.viewState
     val allTask = viewState.allTask
     val scaffoldState = remember { SnackbarHostState() }
-    // val scaffoldState = rememberSnackBarHost()
 
     ViewEffects(listViewModel.viewEffects) {
         when (it) {
             is ListViewEffect.ShowSnackBar -> if (it.action != Action.NO_ACTION) {
                 val snackBarResult = scaffoldState.showSnackbar(
                     message = it.message,
-                    actionLabel = listViewModel.returningActionToString(it.action)
+                    actionLabel = listViewModel.returningActionToString(it.action),
+                    duration = SnackbarDuration.Short
                 )
                 listViewModel.undoDeletedTask(
                     action = it.action,
@@ -82,7 +85,20 @@ fun ListScreen(
                 isIconEnabled = viewState.iconEnableState // todo: may fix this
             )
         },
-        content = {},
+        content = { paddingValues ->
+            ListContent(
+                modifier = Modifier.padding(paddingValues),
+                allTask = allTask,
+                searchedTask = viewState.allTask, // <-do we need this
+                searchAppBarState = viewState.searchAppBarState,
+                onSwipeToDelete = { action, taskData ->
+                    listViewModel.updateAction(newAction = action) // todo: do we need this line?
+                    listViewModel.deleteSingleTaskFromList(taskData = taskData)
+                },
+                navigateToTaskScreen = navigateToTaskScreen
+
+            )
+        },
         floatingActionButton = {
             ListFloatingActionButton(onFloatingActionButtonClicked = navigateToTaskScreen)
         }

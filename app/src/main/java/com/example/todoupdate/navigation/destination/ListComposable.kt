@@ -8,6 +8,7 @@ import com.example.todoupdate.ui.screens.list.ListScreen
 import com.example.todoupdate.util.Constants.LIST_ARGUMENT_KEY
 import com.example.todoupdate.util.Constants.LIST_SCREEN
 import com.example.todoupdate.util.states.Action
+import com.example.todoupdate.util.states.toAction
 
 fun NavGraphBuilder.listComposable(
     navigateToTaskScreen: (taskId: Int) -> Unit
@@ -21,7 +22,7 @@ fun NavGraphBuilder.listComposable(
             }
         )
     ) { navBackStackEntry ->
-        //val action = navBackStackEntry.arguments?.getString(LIST_ARGUMENT_KEY).toAction()
+        val action = navBackStackEntry.arguments?.getString(LIST_ARGUMENT_KEY).toAction()
         //Log.d("ListComposable", action.name)
         ListScreen(
             //action = action,

@@ -17,6 +17,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import com.example.todoupdate.data.models.TaskData
 import com.example.todoupdate.ui.screens.components.SwipeRedBackground
 import com.example.todoupdate.util.states.Action
@@ -27,15 +28,36 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun ListContent(
+    modifier: Modifier = Modifier,
     allTask: RequestState<List<TaskData>>,
     searchedTask: RequestState<List<TaskData>>,
     searchAppBarState: SearchAppBarState,
     onSwipeToDelete: (Action, TaskData) -> Unit,
     navigateToTaskScreen: (taskId: Int) -> Unit
 ) {
+    // Todo: 1 -> unwrap list in the viewModel (The composable shouldn't have to handle RequestState, it should just either display data or not display data.)
     if (searchAppBarState == SearchAppBarState.TRIGGERED) {
         if (allTask is RequestState.Success) {
-
+            HandleListContentState(
+                taskFromList = allTask.data,
+                onSwipeToDelete = onSwipeToDelete,
+                navigateToTaskScreen = navigateToTaskScreen
+            )
+        }
+    } else {
+        if (allTask is RequestState.Success) {
+            /** Empty task shown */
+            if (allTask.data.isEmpty()) {
+                EmptyContent()
+            } else {
+                /** All task shown */
+                DisplayTask(
+                    modifier = modifier,
+                    taskFromList = allTask.data,
+                    onSwipeToDelete = onSwipeToDelete,
+                    navigateToTaskScreen = navigateToTaskScreen
+                )
+            }
         }
     }
 }
@@ -49,18 +71,23 @@ fun HandleListContentState(
     if (taskFromList.isEmpty()) {
         EmptyContent()
     } else {
-
+        DisplayTask(
+            taskFromList = taskFromList,
+            onSwipeToDelete = onSwipeToDelete,
+            navigateToTaskScreen = navigateToTaskScreen
+        )
     }
 }
 
 @Composable
 fun DisplayTask(
+    modifier: Modifier = Modifier,
     taskFromList: List<TaskData>,
     onSwipeToDelete: (Action, TaskData) -> Unit,
     navigateToTaskScreen: (taskId: Int) -> Unit
 ) {
     val scope = rememberCoroutineScope()
-    LazyColumn {
+    LazyColumn(modifier = modifier) {
         items(
             items = taskFromList,
             key = { task ->
@@ -81,15 +108,26 @@ fun DisplayTask(
                     }
                 }
             )
+            /*val dismissDirection = dismissState.dismissDirection // Todo: config 1
+            val isDismissed =
+                dismissState.dismissDirection == SwipeToDismissBoxValue.EndToStart && dismissState.progress == 1f // todo: config 2
+            if (dismissDirection == SwipeToDismissBoxValue.EndToStart) {
+                scope.launch {
+                    delay(300)
+                    onSwipeToDelete(Action.DELETE, task)
+
+                }*/
             val degrees by animateFloatAsState(
-                targetValue = if (dismissState.targetValue == SwipeToDismissBoxValue.Settled) 0f else -45f,
-                label = "Animation"
+                targetValue = if (dismissState.progress in 0f..0.5f) 0f else -45f,
+                label = "Degree Animation"
             )
+
             // Animation
             var itemAppeared by remember { mutableStateOf(false) }
             LaunchedEffect(key1 = true) {
                 itemAppeared = true
             }
+
             AnimatedVisibility(
                 visible = itemAppeared,
                 enter = expandVertically(animationSpec = tween(300)),
@@ -100,18 +138,16 @@ fun DisplayTask(
                     enableDismissFromStartToEnd = false, // Only allow EndToStart swipe
                     backgroundContent = {
                         SwipeRedBackground(degrees = degrees)
-                    },
-                    content = {
-                        /*TaskItem(
-                            modifier = Modifier.animateItemPlacement(),
-                            taskData = task,
-                            navigateToTaskScreen = navigateToTaskScreen
-                        )*/
                     }
-                )
-
+                ) {
+                    ListItem(
+                        taskData = task,
+                        navigateToTaskScreen = navigateToTaskScreen
+                    )
+                }
             }
         }
     }
 }
+
 

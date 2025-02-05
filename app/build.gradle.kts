@@ -76,4 +76,7 @@ dependencies {
     // Navigation
     implementation(libs.navigation)
 
+    // Splash
+    implementation(libs.splash)
+
 }
