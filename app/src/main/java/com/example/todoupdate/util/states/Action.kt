@@ -1,5 +1,8 @@
 package com.example.todoupdate.util.states
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 enum class Action {
     ADD,
     UPDATE,
@@ -11,7 +14,7 @@ enum class Action {
 
 // Tasking a string and returning an enum entry (convert string to Action class)
 // can also write the function like this: fun toAction(ADD: String?)
-fun String?.toAction(): Action {
+/*fun String?.toAction(): Action {
     return if (this.isNullOrEmpty()) Action.NO_ACTION else Action.valueOf(this)
     /*return when {
         this == "ADD" -> {
@@ -33,4 +36,4 @@ fun String?.toAction(): Action {
             Action.NO_ACTION
         }
     }*/
-}
+}*/

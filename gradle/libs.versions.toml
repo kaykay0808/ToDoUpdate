@@ -21,6 +21,7 @@ dataStoreVersion = "1.1.2"
 navigationVersion = "2.8.6"
 # Splash
 splashVerion = "1.0.1"
+serialization = "1.7.3"
 
 
 
@@ -53,6 +54,8 @@ datastore = { module = "androidx.datastore:datastore-preferences", version.ref =
 navigation = { module = "androidx.navigation:navigation-compose", version.ref = "navigationVersion" }
 # Splatsh
 splash = { module = "androidx.core:core-splashscreen", version.ref = "splashVerion" }
+# Json
+kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 
 
 [plugins]
@@ -62,4 +65,6 @@ kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "ko
 # Dagger/HIlt
 kotlinAndroidKsp = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
 hiltAndroid = { id = "com.google.dagger.hilt.android", version.ref = "hiltVersion" }
+# Kotlin serialization
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 

@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlinAndroidKsp)
     alias(libs.plugins.hiltAndroid)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 android {
@@ -79,4 +80,6 @@ dependencies {
     // Splash
     implementation(libs.splash)
 
+    // Json Serialization
+    implementation(libs.kotlin.serialization.json)
 }
