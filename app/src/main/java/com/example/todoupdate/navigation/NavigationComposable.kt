@@ -19,7 +19,6 @@ fun NavigationSetup(
         startDestination = Screen.List()
     ) {
         /** NavGraph */
-        /** NavGraph */
 
         // Define our composable build (we will create our custom destination instead of define our composable below)
         // navigateToTaskScreen = screen.listRoute,

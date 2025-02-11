@@ -126,11 +126,12 @@ class ListViewModel @Inject constructor(
         }
     }
 
-    fun undoDeletedTask(
-        action: Action,
+    fun undoDeletedTaskFromSnackBar(
         snackBarResult: SnackbarResult,
+        action: Action,
         onUndoClicked: (Action) -> Unit
     ) {
+        // If user clicked on the snackBar action and the Action is Delete.
         if (snackBarResult == SnackbarResult.ActionPerformed && action == Action.DELETE) {
             onUndoClicked(Action.UNDO)
         }
@@ -165,6 +166,7 @@ class ListViewModel @Inject constructor(
     }
 
     /** ------- search app bar states -------*/
+
     fun listAppBarState(newState: SearchAppBarState) {
         searchAppBarState = newState
         render()

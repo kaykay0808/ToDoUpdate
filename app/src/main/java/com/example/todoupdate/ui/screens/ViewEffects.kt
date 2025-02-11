@@ -31,6 +31,4 @@ fun <T> ViewEffects(viewEffects: ViewEffects<T>, block: suspend CoroutineScope.(
     }
 }
 
-// Applied some context receivers in gradle
-
-
+// NOTE!!!: Applied some context receivers in gradle

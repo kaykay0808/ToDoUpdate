@@ -12,13 +12,6 @@ fun NavGraphBuilder.taskComposable(
     navigateToListScreen: (/*Action*/) -> Unit
 ) {
     composable<Screen.Task>(
-        // specify what argument the screen will have
-        /*route = TASK_SCREEN,
-        arguments = listOf(
-            navArgument(TASK_ARGUMENT_KEY) {
-                type = NavType.IntType
-            }
-        ),*/
         enterTransition = {
             slideInHorizontally(
                 initialOffsetX = { fullWidth ->
@@ -28,8 +21,7 @@ fun NavGraphBuilder.taskComposable(
             )
         }
     ) { navBackStackEntry ->
-        val taskId =
-            navBackStackEntry.toRoute<Screen.Task>().id//navBackStackEntry.arguments!!.getInt(TASK_ARGUMENT_KEY)
+        val taskId = navBackStackEntry.toRoute<Screen.Task>().id
         TaskScreen(
             navigateToListScreen = navigateToListScreen,
             taskId = taskId

@@ -45,9 +45,10 @@ fun ListScreen(
                     actionLabel = listViewModel.returningActionToString(it.action),
                     duration = SnackbarDuration.Short
                 )
-                listViewModel.undoDeletedTask(
-                    action = it.action,
+                // If user clicked on the snackBar action and the Action is Delete.
+                listViewModel.undoDeletedTaskFromSnackBar(
                     snackBarResult = snackBarResult,
+                    action = it.action,
                     onUndoClicked = it.onUndoClicked
                 )
             }

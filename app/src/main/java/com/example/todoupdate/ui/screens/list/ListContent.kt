@@ -108,15 +108,7 @@ fun DisplayTask(
                     }
                 }
             )
-            /*val dismissDirection = dismissState.dismissDirection // Todo: config 1
-            val isDismissed =
-                dismissState.dismissDirection == SwipeToDismissBoxValue.EndToStart && dismissState.progress == 1f // todo: config 2
-            if (dismissDirection == SwipeToDismissBoxValue.EndToStart) {
-                scope.launch {
-                    delay(300)
-                    onSwipeToDelete(Action.DELETE, task)
 
-                }*/
             val degrees by animateFloatAsState(
                 targetValue = if (dismissState.progress in 0f..0.5f) 0f else -45f,
                 label = "Degree Animation"
