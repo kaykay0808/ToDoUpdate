@@ -65,17 +65,17 @@ fun ListScreen(
                         newState = SearchAppBarState.OPENED
                     )
                 },
-                onSortIconClicked = {},
-                onDeleteAllConfirmed = {},
+                onSortIconClicked = {
+                    listViewModel.persistSortState(it)
+                },
+                onDeleteAllConfirmed = {
+                    listViewModel.deleteAllTask()
+                    listViewModel.setActions()
+
+                },
                 textSearchInput = viewState.searchTextInputState,
                 onCloseIconClicked = {
-                    if (viewState.searchTextInputState.isNotEmpty()) {
-                        listViewModel.defaultTextInputState()
-                    } else {
-                        listViewModel.listAppBarState(
-                            newState = SearchAppBarState.CLOSED
-                        )
-                    }
+                    listViewModel.handleCloseIconClicked()
                 },
                 onSearchImeClicked = { searchQuery ->
                     listViewModel.searchDatabase(searchQuery = searchQuery)

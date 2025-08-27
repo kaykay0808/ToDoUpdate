@@ -167,6 +167,17 @@ class ListViewModel @Inject constructor(
 
     /** ------- search app bar states -------*/
 
+    fun handleCloseIconClicked() {
+        if (viewState.searchTextInputState.isNotEmpty()) {
+            defaultTextInputState()
+        } else {
+            listAppBarState(
+                newState = SearchAppBarState.CLOSED
+            )
+        }
+    }
+
+    // instead of using openSearchBar and closeSearchBar
     fun listAppBarState(newState: SearchAppBarState) {
         searchAppBarState = newState
         render()
@@ -182,7 +193,7 @@ class ListViewModel @Inject constructor(
         render()
     }
 
-    fun defaultTextInputState() {
+    private fun defaultTextInputState() {
         searchTextInputState = ""
         render()
     }
