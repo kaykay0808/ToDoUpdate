@@ -20,7 +20,7 @@ interface ToDoDao {
     fun getAllTasks(): Flow<List<TaskData>>
 
     @Query("SELECT * FROM todo_table WHERE id=:taskId")
-    fun getSelectedTask(taskId: Int): Flow<TaskData>
+    fun getSelectedTask(taskId: Int): Flow<TaskData?>
 
     @Update
     suspend fun updateTask(taskData: TaskData)
